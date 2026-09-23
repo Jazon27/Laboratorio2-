@@ -14,7 +14,8 @@ TIPOS_CONSULTA = [
 def mostrar_menu():
     print("\n===== SOPORTE ACADEMICO =====")
     print("1. Registrar solicitud")
-    print("2. Salir")
+    print("2. Ver solicitudes registradas")
+    print("3. Salir")
 
 
 # FUNCION CON RETORNO
@@ -73,7 +74,7 @@ def registrar_solicitud():
     if not validar_texto(descripcion):
         print("Error: la descripcion no puede estar vacia.")
         return None
-    
+
     prioridad = asignar_prioridad(tipo)
 
     solicitud = {
@@ -96,6 +97,13 @@ def mostrar_resumen(solicitud):
     print("Descripcion:", solicitud["descripcion"])
     print("Prioridad:", solicitud["prioridad"])
 
+def ver_solicitudes(solicitudes):
+    if not solicitudes:
+        print("\nNo hay solicitudes registradas todavia.")
+        return
+    print(f"\n===== TOTAL: {len(solicitudes)} solicitudes =====")
+    for s in solicitudes:
+        mostrar_resumen(s)
 
 # PROGRAMA PRINCIPAL
 def main():
@@ -115,6 +123,9 @@ def main():
                 mostrar_resumen(solicitud)
 
         elif opcion == "2":
+            ver_solicitudes(solicitudes)
+            
+        elif opcion == "3":
             print("Programa finalizado.")
             break
 
